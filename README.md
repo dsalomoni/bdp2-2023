@@ -3,7 +3,7 @@ This repository contains files used in the course <b>Infrastructures for Big Dat
 
 For details, see the course slides.
 
-For more information on the course, see <a href=https://virtuale.unibo.it/course/view.php?id=43588>here</a>.
+For more information on the course, see <a href="https://virtuale.unibo.it/course/view.php?id=43588">here</a>.
 
 ## Accessing the AWS Lab
 
