@@ -13,11 +13,11 @@ Follow the instructions provided during the course to get an account and set up 
 
 ### VM characteristics
 
-- Ubuntu Server 20.04 LTS, 64-bit (x86)
+- Ubuntu Server 22.04 LTS, 64-bit (x86)
 - Size: t2.medium
 - Subnet: default in us-east-1c
-- Storage: 32 GB volume (**not** the default 8 GB size)
-- Security group: rename it and call it "BDP2-Sec"
+- Storage: 30 GB volume (**not** the default 8 GB size)
+- Security group: rename it and call it "bdp2-security"
 
 Remember to generate a new key pair. Call it e.g. `bdp2`. The private key, called in this case `bdp2.pem`, should be downloaded to your laptop and its access protected from the terminal with the command 
 
