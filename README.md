@@ -1,9 +1,9 @@
-# bdp2-2022 - Introduction
-This repository contains files used in the course <b>Infrastructures for Big Data Processing</b> (BDP2) at the University of Bologna, Academic Year 2021-2022, taught by prof. Davide Salomoni.
+# bdp2-2023 - Introduction
+This repository contains files used in the course <b>Infrastructures for Big Data Processing</b> (BDP2) at the University of Bologna, Academic Year 2022-2023, taught by prof. Davide Salomoni.
 
 For details, see the course slides.
 
-For more information on the course, see <a href=https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2021/435337>here</a>.
+For more information on the course, see <a href=https://virtuale.unibo.it/course/view.php?id=43588>here</a>.
 
 ## Accessing the AWS Lab
 
