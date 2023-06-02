@@ -1,9 +1,9 @@
-# bdp2-2022 - Advanced Containers
-This repository contains files used in the course <b>Infrastructures for Big Data Processing</b> (BDP2) at the University of Bologna, Academic Year 2021-2022, taught by prof. Davide Salomoni.
+# bdp2-2023 - Advanced Containers
+This repository contains files used in the course <b>Infrastructures for Big Data Processing</b> (BDP2) at the University of Bologna, Academic Year 2022-2023, taught by prof. Davide Salomoni.
 
 For details, see the course slides.
 
-For more information on the course, see <a href=https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2021/435337>here</a>.
+For more information on the course, see <a href="https://www.unibo.it/it/didattica/insegnamenti/insegnamento/2022/435337">here</a>.
 
 ## Create a directory for this module and go there
 ```
@@ -63,16 +63,6 @@ dig +short myip.opendns.com @resolver1.opendns.com
 
 ```
 
-## Install portainer
-
-```
-docker volume create portainer_data
-docker run -d -p 8000:8000 -p 443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
-
-```
-
-Remember to change the VM1 security group appropriately or you won't be able to connect to the portainer container. Make sure that as _source_ IP address you put that of your own laptop. Do __not__ open the security group for port 443 to the world.
-
 ## Run mypi.py in a container
 
 Create an alpine container, connect to it and run `mypi.py` inside the container:
@@ -98,6 +88,16 @@ docker run --rm -d --name test1 alpine /bin/sh -c "while true; do $(echo date); 
 
 ```
 While the container is running, check its logs with `docker logs --follow test1`. Remember to stop the container when you are done with these checks, with `docker stop test1`.
+
+## Install portainer
+
+```
+docker volume create portainer_data
+docker run -d --rm -p 8000:8000 -p 443:9443 --name=portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+
+```
+
+Remember to change the VM1 security group appropriately or you won't be able to connect to the portainer container. Make sure that as _source_ IP address you put that of your own laptop. Do __not__ open the security group for port 443 to the world.
 
 ## Install `git` on VM1
 
