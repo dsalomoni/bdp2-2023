@@ -1,5 +1,5 @@
 # bdp2-2022 - Cloud Storage
-This repository contains files used in the course <b>Infrastructures for Big Data Processing</b> (BDP2) at the University of Bologna, Academic Year 2021-2022, taught by prof. Davide Salomoni.
+This repository contains files used in the course <b>Infrastructures for Big Data Processing</b> (BDP2) at the University of Bologna, Academic Year 2022-2023, taught by prof. Davide Salomoni.
 
 For details, see the course slides.
 
@@ -120,4 +120,16 @@ To copy the images to a VM1 local directory:
 mkdir -p ~/cloud_storage/local_data
 wget https://tinyurl.com/4sdx42bz -O - | tar -zx -C ~/cloud_storage/local_data
 
+```
+
+### Simulating network delay
+
+To introduce a 10ms delay to every packet transmitted on the VM2 ethernet interface:
+```
+sudo tc qdisc add dev eth0 root netem delay 10ms
+```
+
+To remove the 10ms delay introduced above:
+```
+sudo tc qdisc del dev eth0 root netem delay 10ms
 ```
