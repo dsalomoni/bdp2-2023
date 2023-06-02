@@ -23,12 +23,11 @@ Remember to generate a new key pair. Call it e.g. `bdp2`. The private key, calle
 
 ```
 chmod 400 bdp2.pem
-
 ```
 
 **Important note for Windows users**: if your laptop runs Windows, in order to connect to the AWS VMs you may:
   - Use an ssh client, such as MobaXterm (look it up on the Internet to find download and usage instructions).
-  - Use the Windows Powershell and the Windows Linux Subsystem (WSL). However, in this case remember to <u>move the `bdp2.pem` private key to your WSL home directory</u>. With the Windows File Explorer, you may go to `MyPC` and there you should find the WSL Linux home folder; you will find a folder called something like `Ubuntu`, inside that folder there will be a `home` folder and inside that folder there will be a folder with your Windows username. Once you have moved the `.pem` file to your WSL home directory, remember to issue the `chmod` command shown above. 
+  - Use the Windows Powershell and the Windows Linux Subsystem (WSL). However, in this case remember to <u>move the `bdp2.pem` private key to your WSL home directory</u>. With the Windows File Explorer, you may go to `MyPC` and there you should find the WSL Linux home folder, called something like `Ubuntu`; inside that folder there will be a `home` folder, and inside that folder there will be a folder with your Windows username. That will be your WSL home directory. Once you have moved the `.pem` file there, remember to issue the `chmod` command shown above. 
 
 ### Software update
 ```
