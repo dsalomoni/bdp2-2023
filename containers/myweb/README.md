@@ -34,7 +34,7 @@ git commit -a -m "Fix for silly typo"
 You can now succesfully build and run your web server with 
 ```
 docker build -t web_server .
-docker run -d -p 80:80 web_server
+docker run --rm -d -p 80:80 web_server
 
 ```
 
