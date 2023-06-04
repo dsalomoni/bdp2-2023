@@ -1,9 +1,9 @@
-# bdp2-2022 - AAI
-This repository contains files used in the course <b>Infrastructures for Big Data Processing</b> (BDP2) at the University of Bologna, Academic Year 2021-2022, taught by prof. Davide Salomoni.
+# bdp2-2023 - AAI
+This repository contains files used in the course <b>Infrastructures for Big Data Processing</b> (BDP2) at the University of Bologna, Academic Year 2022-2023, taught by prof. Davide Salomoni.
 
 For details, see the course slides.
 
-For more information on the course, see <a href=https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2021/435337>here</a>.
+For more information on the course, see <a href="https://www.unibo.it/it/didattica/insegnamenti/insegnamento/2022/435337">here</a>.
 
 ## Create a directory for this module and go there
 ```
@@ -30,7 +30,7 @@ docker build -t web_server_oidc .
 Once the build is successful (check that your image has been built with `docker images`) run the container with
 
 ```
-docker run --rm -d -p 80:80 web_server_oidc
+docker run --rm --name oidc_test -d -p 80:80 web_server_oidc
 ```
 
 If you now open the URL `http://<VM1_public_IP_address>:80` you should be redirected to the IAM server; log in there, and you should then be automatically redirected to a page on the web server running on VM1.
