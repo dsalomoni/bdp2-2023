@@ -136,75 +136,71 @@ Focus on the difference between what was described in class:
   - run `minikube tunnel` and in another terminal check what happened with `kubectl get all`.
   - check with `curl <LoadBalancer_address>:80` that you can access one of the nginx pods of the deployment.
 
-## Install OpenFaaS
+## Docker Swarm
 
-First **create a new VM, using the provided information, calling it VM3**. Then, on VM3:
+### Initialize the cluster
 
-```
-git clone https://github.com/openfaas/faasd --depth=1
-cd faasd
-./hack/install.sh
+On the `manager`:
 
 ```
-
-Open port 8080 in the AWS security group for VM3 (remember: **for your laptop only!**) and you should be able to see the OpenFaaS web page pointing your browser to http://_<VM3_public_IP>_:8080.
-
-However, if your network blocks access to port 8080, you may issue this command on VM3:
-
-```
-sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to 8080
+docker swarm init --advertise-addr <MANAGER-PRIVATE-IP>
 ```
 
-### Log in from the terminal
+### Add a node to the cluster
+
+Issue the command `docker swarm join-token worker` on the `manager`. Copy the output command and issue that command on the node that you add to the cluster (that is, issue that command on `worker1` and `worker2`).
+
+### Create a Swarm service
+
+On the `manager`:
 
 ```
-sudo cat /var/lib/faasd/secrets/basic-auth-password | faas-cli login --password-stdin
+docker service create --replicas 3 -p 8082:80 --name web_swarm nginx
 ```
 
-### Log in from the Web interface
+### Check the Swarm status
 
-The username is `admin`. The password can be found typing the command `sudo cat /var/lib/faasd/secrets/basic-auth-password`. 
-
-## Writing serverless functions
-
-### Install the OpenFaas CLI on VM1
+Check the status of the `web_swarm` service:
 
 ```
-curl -sSL https://cli.openfaas.com | sudo -E sh
+docker service ls
+docker service ps web_swarm
 ```
 
-### Hello World
+Verify that on `worker1` and `worker2` you have one of more containers running, using `docker ps`.
 
-Fetch the latest available list of templates with `faas-cli template pull`; check what they are with `faas-cli new --list`. 
+### Scaling, draining
 
-```
-mkdir -p ~/cloud_automation/hello
-cd ~/cloud_automation/hello
-faas-cli new --lang python3 hello-python --prefix="<your_dockerhub_username>"
-```
+Scaling a service: `docker service scale web_swarm=5`. Check with `docker service ps web_swarm`. 
 
-### A DNA base counter
+Draining a node: `docker node update --availability drain <worker2>`
+Making a drained node available: `docker node update --availability drain <worker2>`
 
-```
-mkdir -p ~/cloud_automation/dnabase
-cd ~/cloud_automation/dnabase
-faas-cli new --lang python3 count-base --prefix="<your_dockerhub_username>"
-```
+### Load balancing the web servers
 
-Get the `handler.py` function from this repository and put it in the `count-base` directory. 
-
-Edit `requirements.py` adding a line with the text `requests`, to specify that the `requests` module is needed by our function.
-
-Finally, build and deploy the function:
+Create a directory on the `manager` and change to that directory:
 
 ```
-faas-cli build -f ./count-base.yml
-faas-cli push -f ./count-base.yml
-faas-cli deploy -f ./count-base.yml
+mkdir -p ~/balancer
+chdir ~/balancer
 ```
 
-Or, with a single command, `faas-cli up -f count-base.yml`.
+Copy `nginx.conf` from this GitHub repo and then edit it as explained in the course slides; copy also the `Dockerfile`. Build the load balancer image and run it with
 
-Try it out from the OpenFaas web interface passing for instance a string such as `AAACC` or a url with some real DNA, such as https://github.com/dsalomoni/bdp2-2022/raw/main/cloud_automation/yeast.txt. 
+```
+docker build -t load_balancer .
+docker run --rm -d -p 80:80 load_balancer
+```
 
-Finally, try to call the `count-base` function from a remote location (for example, your laptop) either via Python or directly via `curl`, targeting the endpoint `http://<VM3_public_ip>:8080/function/count-base`.
+At this point, if you open port 80 on the proper security group, and open `http://<manager_public_ip>:80` in a browser, you should get a web page displayed.
+
+### Additional commmands
+
+Remove a Swarm service: `docker service rm <service_name>`
+Secrets:
+- generate a random password with `openssl rand -base64 10`
+- create a secret: `printf "a strong password" | docker secret create my_password -`
+- create a Swarm service with access to a certain secret: `docker service create --name nginx_secure --secret my_password -p 80:80 nginx`
+- verify that a secret is visible to a Swarm service under `/run/secrets`: `docker exec <container_id> cat /run/secrets/my_password`
+- revoke access to a secret for a Swarm service: `docker service update --secret-rm my_password nginx_secure`
+- remove a secret: `docker secret rm my_password`
