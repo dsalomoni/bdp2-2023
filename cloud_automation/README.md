@@ -169,7 +169,7 @@ docker service ps web_swarm
 
 Verify that on `worker1` and `worker2` you have one of more containers running, using `docker ps`.
 
-### Scaling, draining
+### Scaling and draining
 
 Scaling a service: `docker service scale web_swarm=5`. Check with `docker service ps web_swarm`. 
 
@@ -178,26 +178,29 @@ Making a drained node available: `docker node update --availability drain <worke
 
 ### Load balancing the web servers
 
-Create a directory on the `manager` and change to that directory:
+Create a directory on the `manager` and go to that directory:
 
 ```
 mkdir -p ~/balancer
 chdir ~/balancer
 ```
 
-Copy `nginx.conf` from this GitHub repo and then edit it as explained in the course slides; copy also the `Dockerfile`. Build the load balancer image and run it with
+Copy `nginx.conf` from this GitHub repo into that directory. Then edit it as explained in the course slides; copy also the `Dockerfile` to the same directory. 
+
+Then build the load balancer image and run it with:
 
 ```
 docker build -t load_balancer .
 docker run --rm -d -p 80:80 load_balancer
 ```
 
-At this point, if you open port 80 on the proper security group, and open `http://<manager_public_ip>:80` in a browser, you should get a web page displayed.
+At this point, if you allow port 80 in the proper security group, and open `http://<manager_public_ip>:80` in a browser, you should get a web page displayed, coming from one of the Swarm nodes. Which one is it?
 
 ### Additional commmands
 
 Remove a Swarm service: `docker service rm <service_name>`
-Secrets:
+
+On secrets:
 - generate a random password with `openssl rand -base64 10`
 - create a secret: `printf "a strong password" | docker secret create my_password -`
 - create a Swarm service with access to a certain secret: `docker service create --name nginx_secure --secret my_password -p 80:80 nginx`
