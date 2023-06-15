@@ -141,3 +141,45 @@ The command is `git clone`. Try it on VM2.
 ```
 git clone https://github.com/dsalomoni/bdp2-test.git
 ```
+
+## Using `docker-compose`
+On VM1, create a new directory for the docker-compose example and go to that directory:
+
+```
+mkdir -p ~/containers/compose
+chdir ~/containers/compose
+```
+
+Copy the sample `docker-compose.yml` file found in this GitHub repository to the newly created directory. 
+
+By default, the `docker-compose` command is not installed on VM1; install it with:
+
+```
+sudo apt upgrade && sudo apt install -y docker-compose
+```
+
+Build the application stack with:
+
+```
+docker-compose up --build --no-start
+```
+
+Start the application stack with:
+
+```
+docker-compose start
+```
+
+Verify with `docker ps` that the containers are up and running. Open up the page `http://VM1_public_ip:8080/` and you should get the Wordpress set-up page. Take care of the security group, as explained during the course. Notice that if you are on AlmaWifi, port 8080 outgoing from your laptop may be blocked; in that case, change the `port` directive on the compose file to `80:80`.
+
+Stop the application stack with:
+
+```
+docker-compose stop
+```
+
+Remove it completely (in this case, you will have to build it again the next time) with:
+
+```
+docker-compose down
+```
