@@ -170,7 +170,7 @@ Start the application stack with:
 docker-compose start
 ```
 
-Verify with `docker ps` that the containers are up and running. Open up the page `http://VM1_public_ip:8080/` and you should get the Wordpress set-up page. Take care of the security group, as explained during the course. Notice that if you are on AlmaWifi, port 8080 outgoing from your laptop may be blocked; in that case, change the `port` directive on the compose file to `80:80`.
+Verify with `docker ps` that the containers are up and running. Open up the page `http://VM1_public_ip:8080/` and you should get the Wordpress set-up page. Take care of the security group, as explained during the course. Notice that if you are on AlmaWifi, port 8080 outgoing from your laptop may be blocked; in that case, change the `port` directive in the compose file to `80:80` and open the page `http://VM1_public_ip:80/` instead.
 
 Stop the application stack with:
 
