@@ -56,3 +56,5 @@ sudo apt -y install python3-pip python3-matplotlib
 sudo pip install --upgrade numpy Pillow scikit-image
 
 ```
+
+[![DOI](https://zenodo.org/badge/646546452.svg)](https://zenodo.org/badge/latestdoi/646546452)
