@@ -12,7 +12,6 @@ Note: unless specified otherwise, all the commands below should be performed on 
 ```
 mkdir -p ~/cloud_automation
 cd ~/cloud_automation
-
 ```
 
 ## Install kubectl
@@ -23,7 +22,6 @@ cd ~/cloud_automation
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/
-
 ```
 
 ## Install minikube
@@ -32,7 +30,6 @@ sudo mv ./kubectl /usr/local/bin/
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 chmod +x ./minikube-linux-amd64
 sudo mv ./minikube-linux-amd64 /usr/local/bin/minikube
-
 ```
 
 Before moving on, check that both kubectl and minikube work with the commands
