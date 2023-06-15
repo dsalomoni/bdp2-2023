@@ -58,3 +58,4 @@ sudo pip install --upgrade numpy Pillow scikit-image
 ```
 
 [![DOI](https://zenodo.org/badge/646546452.svg)](https://zenodo.org/badge/latestdoi/646546452)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
