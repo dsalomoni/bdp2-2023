@@ -178,7 +178,7 @@ Stop the application stack with:
 docker-compose stop
 ```
 
-Remove it completely (in this case, you will have to build it again the next time) with:
+Remove it completely (in this case, you will have to build it again the next time you want to run the application stack) with:
 
 ```
 docker-compose down
