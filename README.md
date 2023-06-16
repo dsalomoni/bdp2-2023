@@ -49,6 +49,8 @@ Once done, activate the new prompt either by logging out and then back in, or si
 
 ### Installing additional packages on VM1
 
+Perform these commands on VM1:
+
 ```
 sudo apt update
 sudo apt -y upgrade
