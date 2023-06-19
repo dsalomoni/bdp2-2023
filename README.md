@@ -7,7 +7,6 @@ For more information on the course, see <a href="https://www.unibo.it/it/didatti
 
 [![DOI](https://zenodo.org/badge/646546452.svg)](https://zenodo.org/badge/latestdoi/646546452)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Latest release](https://badgen.net/github/release/dsalomoni/bdp2-2023)](https://github.com/dsalomoni/bdp2-2023/releases)
 
 ## Accessing the AWS Lab
 
