@@ -5,6 +5,10 @@ For details, see the course slides.
 
 For more information on the course, see <a href="https://www.unibo.it/it/didattica/insegnamenti/insegnamento/2022/435337">here</a>.
 
+[![DOI](https://zenodo.org/badge/646546452.svg)](https://zenodo.org/badge/latestdoi/646546452)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Latest release](https://badgen.net/github/release/dsalomoni/bdp2-2023)](https://github.com/dsalomoni/bdp2-2023/releases)
+
 ## Accessing the AWS Lab
 
 Follow the instructions provided during the course to get an account and set up your Lab environment. Remember that, once you have set up your account, you should go to <a href=https://www.awsacademy.com/LMS_Login>https://www.awsacademy.com/LMS_Login</a> to log in to your AWS Lab. Select "Student Login" there.
@@ -58,6 +62,3 @@ sudo apt -y install python3-pip python3-matplotlib
 sudo pip install --upgrade numpy Pillow scikit-image
 
 ```
-
-[![DOI](https://zenodo.org/badge/646546452.svg)](https://zenodo.org/badge/latestdoi/646546452)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
